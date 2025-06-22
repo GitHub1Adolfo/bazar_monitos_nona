@@ -1,0 +1,101 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar p-3">
+    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'logo_peluqueria.jpeg' %}"
+            alt="Logo Peluquería" class="logo_peluqueria" style="width: 65px; height: 65px;"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Productos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Shampoo">Shampoo</a>
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Acondicionador">Acondicionador</a>
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Crema%20capilar">Crema Capilar</a>
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Tintura">Tinturas</a>
+                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'tabla_productos' %}">Gestor de Inventario</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar producto</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Soporte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{% url 'user_logout' %}">Cerrar Sesión ({{ user.username }})</a>
+            </li>
+            {% else %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Productos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Shampoo">Shampoo</a>
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Acondicionador">Acondicionador</a>
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Crema%20capilar">Crema Capilar</a>
+                    <a class="dropdown-item" href="{% url 'index' %}?categoria=Tintura">Tinturas</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+            </li>
+
+        </ul>
+
+
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{% url 'Tienda' %}"><i class="fa-solid fa-cart-shopping fa-2x"
+                        style="color: #ffffff;" aria-label="Carrito de compras"></i></a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: black;">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #ffffff;">Contacto Soporte</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #ffffff;"></button>
+                </div>
+                <div class="modal-body" >
+                    <strong><a href="https://api.whatsapp.com/send/?phone=945747265&text&type=phone_number&app_absent=0" style="text-decoration: none;"><i class="fa-brands fa-whatsapp"></i> +569 4574 7265</a></strong><br><br>
+                    <strong><a href="" style="text-decoration: none;"><i class="fa-solid fa-phone"></i></i> +569 4574 7265  24/7</a><br><br></strong>
+                    <strong><a href="" style="text-decoration: none;"><i class="fa-solid fa-envelope"></i> soporte@peluqueriaMR@gmail.com</a></strong><br><br><br>
+
+                    <h4>Ticket De Ayuda</h4>
+                    <form>
+                        <!-- <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="textarea" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Describa su problema</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Enviar</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</nav>
